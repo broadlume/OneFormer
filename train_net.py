@@ -62,8 +62,7 @@ from oneformer import (
     add_convnext_config,
 )
 
-from detectron2.utils.events import CommonMetricPrinter, JSONWriter
-from oneformer.utils.events import WandbWriter, setup_wandb
+from detectron2.utils.events import CommonMetricPrinter, JSONWriter, TensorboardXWriter
 from time import sleep
 from oneformer.data.build import *
 from oneformer.data.dataset_mappers.dataset_mapper import DatasetMapper
@@ -188,7 +187,7 @@ class Trainer(DefaultTrainer):
             # It may not always print what you want to see, since it prints "common" metrics only.
             CommonMetricPrinter(self.max_iter),
             JSONWriter(os.path.join(self.cfg.OUTPUT_DIR, "metrics.json")),
-            WandbWriter(),
+            TensorboardXWriter(self.cfg.OUTPUT_DIR),
         ]
 
     @classmethod
@@ -394,8 +393,7 @@ def setup(args):
     cfg.merge_from_list(args.opts)
     cfg.freeze()
     default_setup(cfg, args)
-    if not args.eval_only:
-        setup_wandb(cfg, args)
+
     # Setup logger for "oneformer" module
     setup_logger(output=cfg.OUTPUT_DIR, distributed_rank=comm.get_rank(), name="oneformer")
     return cfg
