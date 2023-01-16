@@ -1,0 +1,26 @@
+_BASE_: ./oneformer_convnext_large_bs16_160k.yaml
+SOLVER:
+  IMS_PER_BATCH: 16
+  BASE_LR: 0.000025 # 8 gpu version used 0.0001
+INPUT:
+  MIN_SIZE_TRAIN: !!python/object/apply:eval ["[int(x * 0.1 * 512) for x in range(5, 21)]"]
+  MIN_SIZE_TRAIN_SAMPLING: "choice"
+  MIN_SIZE_TEST: 512
+  MAX_SIZE_TRAIN: 2048
+  MAX_SIZE_TEST: 2048
+  CROP:
+    ENABLED: True
+    TYPE: "absolute"
+    SIZE: (512, 512)
+    SINGLE_CATEGORY_MAX_AREA: 1.0
+  COLOR_AUG_SSD: True
+  SIZE_DIVISIBILITY: 512  # used in dataset mapper
+  FORMAT: "RGB"
+TEST:
+  DETECTIONS_PER_IMAGE: 250
+  EVAL_PERIOD: 5000
+  AUG:
+    ENABLED: False
+    MIN_SIZES: [128, 256, 512, 1024, 2048, 4096]
+    MAX_SIZE: 4096
+    FLIP: True
