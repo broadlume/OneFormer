@@ -101,7 +101,7 @@ if __name__ == "__main__":
     logger.info("Arguments: " + str(args))
 
     cfg = setup_cfg(args)
-
+    print(cfg)
     demo = VisualizationDemo(cfg)
 
     if args.input:

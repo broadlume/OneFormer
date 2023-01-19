@@ -11,6 +11,7 @@
 
 import os
 import glob
+import pybind11
 
 import torch
 
@@ -54,7 +55,7 @@ def get_extensions():
             raise NotImplementedError('No CUDA runtime is found. Please set FORCE_CUDA=1 or test it by running torch.cuda.is_available().')
 
     sources = [os.path.join(extensions_dir, s) for s in sources]
-    include_dirs = [extensions_dir]
+    include_dirs = [extensions_dir, pybind11.get_include()]
     ext_modules = [
         extension(
             "MultiScaleDeformableAttention",

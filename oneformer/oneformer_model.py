@@ -273,6 +273,11 @@ class OneFormer(nn.Module):
         images = [(x - self.pixel_mean) / self.pixel_std for x in images]
         images = ImageList.from_tensors(images, self.size_divisibility)
 
+        # when exporting there will be no task in the input, so add one if it's missing
+        for idx, x in enumerate(batched_inputs):
+            if not "task" in x:
+                batched_inputs[idx]["task"] = "semantic"
+
         tasks = torch.cat([self.task_tokenizer(x["task"]).to(self.device).unsqueeze(0) for x in batched_inputs], dim=0)
         tasks = self.task_mlp(tasks.float())
 
@@ -283,7 +288,9 @@ class OneFormer(nn.Module):
             texts = torch.cat([self.text_tokenizer(x["text"]).to(self.device).unsqueeze(0) for x in batched_inputs], dim=0)
             texts_x = self.encode_text(texts)
 
-            outputs = {**outputs, **texts_x}
+            #outputs = {**outputs, **texts_x}
+            for tkey in enumerate(texts_x):
+                outputs[tkey] = texts_x[tkey]
 
             # mask classification target
             if "instances" in batched_inputs[0]:
@@ -351,7 +358,7 @@ class OneFormer(nn.Module):
                     bbox_r = retry_if_cuda_oom(self.instance_inference)(mask_cls_result, mask_pred_result, input_per_image["task"])
                     processed_results[-1]["box_instances"] = bbox_r
 
-            return processed_results
+            return processed_results[0]["sem_seg"]
 
     def prepare_targets(self, targets, images):
         h_pad, w_pad = images.tensor.shape[-2:]
