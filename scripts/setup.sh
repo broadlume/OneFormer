@@ -1,6 +1,6 @@
 
-conda create --name oneformerX python=3.8 -y
-conda activate oneformerX
+conda create --name oneformer python=3.8 -y
+conda activate oneformer
 
 # Install Pytorch
 conda install pytorch==1.10.1 torchvision==0.11.2 cudatoolkit=11.3 -c pytorch -c conda-forge
@@ -22,6 +22,6 @@ sh make.sh
 cd ../../../..
 
 # fetch the pretained weights for training
-/bin/bash ./scripts/fetch_pretrained_convnext.sh
-/bin/bash ./scripts/fetch_pretrained_dianet.sh
-/bin/bash ./scripts/fetch_pretrained_swin.sh
+#/bin/bash ./scripts/fetch_pretrained_convnext.sh
+#/bin/bash ./scripts/fetch_pretrained_dianet.sh
+#/bin/bash ./scripts/fetch_pretrained_swin.sh

@@ -9,6 +9,9 @@ from .data.dataset_mappers.coco_unified_new_baseline_dataset_mapper import COCOU
 from .data.dataset_mappers.oneformer_unified_dataset_mapper import (
     OneFormerUnifiedDatasetMapper,
 )
+from .data.dataset_mappers.semantic_oneformer_synthhomes_dataset_mapper import (
+    SemanticOneFormerSynthHomesDatasetMapper,
+)
 
 # models
 from .oneformer_model import OneFormer

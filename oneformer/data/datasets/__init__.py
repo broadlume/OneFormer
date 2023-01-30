@@ -4,4 +4,5 @@ from . import (
     register_coco_panoptic_annos_semseg,
     register_ade20k_instance,
     register_coco_panoptic2instance,
+    register_synthhomes_dataset,
 )
