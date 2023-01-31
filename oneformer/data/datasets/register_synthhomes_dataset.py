@@ -51,10 +51,10 @@ def get_synthhomes_dicts_from_json(jsonpath):
 for d in ["train", "val"]:
     DatasetCatalog.register("synthhomes_sem_seg_" + d, lambda d=d:get_synthhomes_dicts_from_json(os.path.join(_root, "vmdatasets/vmsynthhomes", "synthhomes_detectrondict_" + d + ".json")))
     MetadataCatalog.get("synthhomes_sem_seg_" + d).set(
-        stuff_classes = ["Floor", "Wall"],
-        stuff_colors = [(0,255,0), (0,0,255)],
+        stuff_classes = ["Background", "Floor", "Wall"],
+        stuff_colors = [(0,0,0), (0,255,0), (0,0,255)],
         thing_classes = [],
         thing_dataset_id_to_contiguous_id = {},
-        ignore_label = 0,
+        ignore_label = 255,
         evaluator_type = "sem_seg"
     )

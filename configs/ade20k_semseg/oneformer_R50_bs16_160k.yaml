@@ -1,10 +1,10 @@
-_BASE_: Base-SynthHomes-UnifiedSegmentation.yaml
+_BASE_: Base-ADE20K-UnifiedSegmentation.yaml
 MODEL:
   META_ARCHITECTURE: "OneFormer"
   SEM_SEG_HEAD:
     NAME: "OneFormerHead"
-    IGNORE_VALUE: 0
-    NUM_CLASSES: 3
+    IGNORE_VALUE: 255
+    NUM_CLASSES: 150
     LOSS_WEIGHT: 1.0
     CONVS_DIM: 256
     MASK_DIM: 256
@@ -55,4 +55,4 @@ MODEL:
     OBJECT_MASK_THRESHOLD: 0.5
     TASK: "semantic"
 TEST:
-  DETECTIONS_PER_IMAGE: 3
+  DETECTIONS_PER_IMAGE: 150
