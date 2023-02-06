@@ -14,10 +14,10 @@ MODEL:
     # NORM: "SyncBN"
     RES5_MULTI_GRID: [1, 1, 1]  # not used
 DATASETS:
-  TRAIN: ("synthhomes_sem_seg_train",)
-  TEST_PANOPTIC: ("synthhomes_sem_seg_val",)
-  TEST_INSTANCE: ("synthhomes_sem_seg_val",)
-  TEST_SEMANTIC: ("synthhomes_sem_seg_val",)
+  TRAIN: ("blfloors_sem_seg_train",)
+  TEST_PANOPTIC: ("blfloors_sem_seg_val",)
+  TEST_INSTANCE: ("blfloors_sem_seg_val",)
+  TEST_SEMANTIC: ("blfloors_sem_seg_val",)
 SOLVER:
   IMS_PER_BATCH: 16
   BASE_LR: 0.000025 # 0.0001 

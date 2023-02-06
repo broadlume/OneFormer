@@ -163,7 +163,7 @@ class Trainer(DefaultTrainer):
             mapper = COCOUnifiedNewBaselineDatasetMapper(cfg, True)
             return build_detection_train_loader(cfg, mapper=mapper)
         # synthhomes sem seg
-        elif cfg.INPUT.DATASET_MAPPER_NAME == "synthhomes_semantic":
+        elif cfg.INPUT.DATASET_MAPPER_NAME == "synthhomes_semantic" or cfg.INPUT.DATASET_MAPPER_NAME == "blfloors_semantic":
             mapper = SemanticOneFormerSynthHomesDatasetMapper(cfg, True)
             return build_detection_train_loader(cfg, mapper=mapper)
         else:

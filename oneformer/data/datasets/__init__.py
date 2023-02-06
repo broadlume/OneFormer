@@ -5,4 +5,5 @@ from . import (
     register_ade20k_instance,
     register_coco_panoptic2instance,
     register_synthhomes_dataset,
+    register_blfloors_dataset,
 )
