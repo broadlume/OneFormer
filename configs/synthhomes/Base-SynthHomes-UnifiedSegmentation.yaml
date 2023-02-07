@@ -3,8 +3,10 @@ MODEL:
     FREEZE_AT: 0
     NAME: "build_resnet_backbone"
   WEIGHTS: "detectron2://ImageNetPretrained/torchvision/R-50.pkl"
-  PIXEL_MEAN: [123.675, 116.280, 103.530]
-  PIXEL_STD: [58.395, 57.120, 57.375]
+  #PIXEL_MEAN: [123.675, 116.280, 103.530]
+  #PIXEL_STD: [58.395, 57.120, 57.375]
+  PIXEL_MEAN: [110.50969896, 85.53240545, 66.8563634]
+  PIXEL_STD: [55.89039292, 55.89039292, 55.89039292]
   RESNETS:
     DEPTH: 50
     STEM_TYPE: "basic"  # not used
@@ -42,6 +44,7 @@ INPUT:
   MIN_SIZE_TEST: 512
   MAX_SIZE_TRAIN: 2048
   MAX_SIZE_TEST: 2048
+  RANDOM_FLIP: "horizontal"
   CROP:
     ENABLED: True
     TYPE: "absolute"
