@@ -2,7 +2,7 @@
 
 export task=semantic
 
-traindir="./output/synthhomes_semseg"
+traindir="./output/synthhomes_v3_640_semseg_lr10-e4"
 lastcheckpoint=`cat $traindir/last_checkpoint`
 lastname=${lastcheckpoint%????}
 outputdir="${traindir}/${lastname}"
