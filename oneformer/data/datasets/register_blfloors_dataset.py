@@ -14,7 +14,7 @@ def get_blfloors_dicts_from_json(jsonpath):
     return dataset
 
 for d in ["train", "val"]:
-    DatasetCatalog.register("blfloors_sem_seg_" + d, lambda d=d:get_blfloors_dicts_from_json(os.path.join(_root, "vmdatasets/broadlumefloors", "blfloors_detectrondict_" + d + ".json")))
+    DatasetCatalog.register("blfloors_sem_seg_" + d, lambda d=d:get_blfloors_dicts_from_json(os.path.join(_root, "vmdatasets/blfloors", "blfloors_detectrondict_" + d + ".json")))
     MetadataCatalog.get("blfloors_sem_seg_" + d).set(
         stuff_classes = ["Background", "Floor"],
         stuff_colors = [(0,0,0), (0,255,0)],
