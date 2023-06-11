@@ -1,4 +1,4 @@
-export DETECTRON2_DATASETS=../datasets
+export DETECTRON2_DATASETS=/media/tom/Data/datasets
 
 python ./train_net.py --dist-url 'tcp://127.0.0.1:50163' \
     --num-gpus 2 \

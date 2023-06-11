@@ -6,4 +6,5 @@ from . import (
     register_coco_panoptic2instance,
     register_synthhomes_dataset,
     register_blfloors_dataset,
+    register_bvhomes_dataset,
 )

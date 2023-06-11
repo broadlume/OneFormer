@@ -163,7 +163,7 @@ class Trainer(DefaultTrainer):
             mapper = COCOUnifiedNewBaselineDatasetMapper(cfg, True)
             return build_detection_train_loader(cfg, mapper=mapper)
         # synthhomes sem seg
-        elif cfg.INPUT.DATASET_MAPPER_NAME == "synthhomes_semantic" or cfg.INPUT.DATASET_MAPPER_NAME == "blfloors_semantic":
+        elif cfg.INPUT.DATASET_MAPPER_NAME == "synthhomes_semantic" or cfg.INPUT.DATASET_MAPPER_NAME == "blfloors_semantic" or cfg.INPUT.DATASET_MAPPER_NAME == "bvhomes_semantic":
             mapper = SemanticOneFormerSynthHomesDatasetMapper(cfg, True)
             return build_detection_train_loader(cfg, mapper=mapper)
         else:
@@ -396,6 +396,8 @@ def setup(args):
     add_oneformer_config(cfg)
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
+    #cfg.MODEL.DEVICE = "cpu"
+    #cfg.SOLVER.AMP.ENABLED = False
     cfg.freeze()
     default_setup(cfg, args)
 
@@ -406,7 +408,6 @@ def setup(args):
 
 def main(args):
     cfg = setup(args)
-
     if args.eval_only:
         model = Trainer.build_model(cfg)
         net_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
