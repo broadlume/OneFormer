@@ -7,4 +7,5 @@ from . import (
     register_synthhomes_dataset,
     register_blfloors_dataset,
     register_bvhomes_dataset,
+    register_bvrooms_dataset,
 )
